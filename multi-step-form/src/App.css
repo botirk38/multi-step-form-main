@@ -1,0 +1,26 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    width:100vw;
+    min-height:100vh;
+    font-family: "Ubuntu", "sans-serif";
+    background-color: #EFF5FF;
+}
+
+#root{
+    width:100%;
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile-nav{
+    @media (min-width: 768px) {
+        display: none;
+    }
+}
