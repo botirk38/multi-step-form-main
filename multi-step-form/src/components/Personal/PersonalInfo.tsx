@@ -10,6 +10,9 @@ import { StepNavigation } from "../NavigationBtns/StepNavigation.tsx";
 import { DesktopNavigation } from "../NavigationBtns/StepNavigation";
 
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useSetFormState, useFormState } from "../../hooks/formHooks.ts";
+
+
 
 const PersonalInfo: React.FC<ComponentNavigationProps> = ({
   handleNext,
@@ -17,10 +20,15 @@ const PersonalInfo: React.FC<ComponentNavigationProps> = ({
   currentStep,
   maxStep,
 }) => {
+    const formData = useFormState();
+    const setFormData = useSetFormState();
 
     const { register, handleSubmit, formState: { errors } } = useForm<PersonalInfoInputs>();
-    const onSubmit: SubmitHandler<PersonalInfoInputs> = data => {
+    const onSubmit: SubmitHandler<PersonalInfoInputs> = (data: PersonalInfoInputs) => {
         console.log(data);
+        setFormData({ ...formData, personalInfo: data });
+        console.log(formData);
+
         handleNext();
 
     }
@@ -96,7 +104,7 @@ const PersonalInfo: React.FC<ComponentNavigationProps> = ({
             maxStep={maxStep}
             />
         </DesktopNavigation>
-
+ 
         <MobileStepNavigation>
         <StepNavigation 
           handleBack={handleBack} 

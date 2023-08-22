@@ -28,8 +28,8 @@ export const theme = {
       body: {
         fontSize: '16px',
         fontSizeH1: '40px',
-        itemTitle: '16px',
-        itemSubtitle: '14px'
+        itemTitle: '18px',
+        itemSubtitle: '16px'
       },
       font: {
         family: "'Ubuntu', sans-serif",

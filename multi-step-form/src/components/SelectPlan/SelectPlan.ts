@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import {Container,Form,PlanBtnProps } from '../../types/index';
+import {Container,Form,PlanBtnProps, BtnContainer, Btn, ItemContainer } from '../../types/index';
 
 
 export const SelectPlanContainer = styled(Container)`
@@ -28,7 +28,6 @@ export const SelectPlanForm = styled(Form)`
     background-color: ${props => props.theme.colors.neutral.white};
     z-index:100;
     top:40%;
-    max-width:24rem;
 
     @media (min-width:767px) {
         padding: 2rem;
@@ -38,27 +37,12 @@ export const SelectPlanForm = styled(Form)`
 
 `;
 
-export const PlanBtnContainer = styled.div`
-    display:flex;
-    gap:1.5rem;
+export const PlanBtnContainer = styled(BtnContainer)`
 
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    width:100%;
-    margin-bottom:1rem;
 `;
 
-export const PlanBtn = styled.button<PlanBtnProps>`
-    width: 100%;
-    padding: 1.5rem;
-    border-radius: 10px;
-    border: 1px solid ${props => props.theme.colors.neutral.lightGray};
-    background-color: ${props => props.theme.colors.neutral.white};
-    display:flex;
-    justify-content:start;
-    align-items:start;
-    
+export const PlanBtn = styled(Btn)<PlanBtnProps>`
+
 `;
 
 export const PlanBtnPicture = styled.picture`
@@ -78,10 +62,7 @@ export const PlanBtnImg = styled.img`
 
 `;
 
-export const PlanItemContainer = styled.div`
-    display:flex;
-    flex-direction:column;
-    text-align:start;
+export const PlanItemContainer = styled(ItemContainer)`
 
 `;
 
@@ -95,6 +76,7 @@ export const PlanItemTitle = styled.h2`
 export const PlanItemPrice = styled.h3`
     font-size: ${props => props.theme.typography.body.itemSubtitle};
     color: ${props => props.theme.colors.neutral.coolGray};
+    font-weight: ${props => props.theme.typography.font.weights.regular};
     margin-top:0.5rem;
 `;
 

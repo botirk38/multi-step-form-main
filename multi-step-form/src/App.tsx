@@ -3,6 +3,8 @@ import "./App.css"
 import { ThemeProvider } from 'styled-components';
 import {theme} from "./themes/defaultTheme"
 import { useState } from 'react';
+import { FormProvider } from './FormContext.tsx';
+
 
 
 const Main = styled.main`
@@ -45,6 +47,8 @@ const Main = styled.main`
 import Navbar from './components/Navbar/Navbar.tsx'
 import PersonalInfo from './components/Personal/PersonalInfo.tsx';
 import SelectPlan from './components/SelectPlan/SelectPlan.tsx';
+import AddOns from './components/AddOns/AddOns.tsx';
+import Summary from './components/Summary/Summary.tsx';
 
 
 function App() {
@@ -63,37 +67,54 @@ function App() {
         }
     };
 
+    const goToStep = (step: number) => {
+      setCurrentStep(step);
+    }
+
     return (
-      <ThemeProvider theme={theme}>
-        <Main>
-          <Navbar currentStep={currentStep} />
-          
-          {currentStep === 1 && 
-          <PersonalInfo 
+      <FormProvider>
+        <ThemeProvider theme={theme}>
+          <Main>
+            <Navbar currentStep={currentStep} />
+            
+            {currentStep === 1 && 
+            <PersonalInfo 
+              handleBack={handleBack} 
+              handleNext={handleNext} 
+              currentStep={currentStep} 
+              maxStep={5}
+            />
+          }
+            {currentStep === 2 && 
+            <SelectPlan 
             handleBack={handleBack} 
             handleNext={handleNext} 
             currentStep={currentStep} 
-            maxStep={4}
-          />
-        }
-          {currentStep === 2 && 
-          <SelectPlan 
-          handleBack={handleBack} 
-          handleNext={handleNext} 
-          currentStep={currentStep} 
-          maxStep={4} 
-          />
-          }
-          {currentStep === 3 && <AddOns />}
-          {currentStep === 4 && <Summary />}
-    
+            maxStep={5} 
+            />
+            }
+            {currentStep === 3 && <AddOns 
+            handleBack={handleBack} 
+            handleNext={handleNext} 
+            currentStep={currentStep} 
+            maxStep={5} 
+            />}
+            {currentStep === 4 && <Summary 
+            handleBack={handleBack}
+            handleNext={handleNext}
+            goToStep={goToStep}
+            currentStep={currentStep}
+            maxStep={5}
+            />}
+      
 
-        
           
+            
 
-        </Main>   
+          </Main>   
        
-      </ThemeProvider>
+        </ThemeProvider>
+      </FormProvider>
     );
     
 }

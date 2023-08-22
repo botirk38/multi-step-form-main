@@ -7,6 +7,7 @@ type Props = {
   handleBack: () => void;
   currentStep: number;
   maxStep: number;
+  goToStep?: (step: number) => void;
   className?: string;
 };
 
@@ -22,6 +23,12 @@ export const StepNavigation: React.FC<Props> = ({ handleNext, handleBack, curren
     { currentStep < maxStep && 
       <NavigationBtns type="submit" onClick={handleNext}>
         Next Step
+      </NavigationBtns>
+    }
+
+    { currentStep === maxStep &&
+      <NavigationBtns type="submit" onClick={handleNext}>
+        Confirm
       </NavigationBtns>
     }
   </>

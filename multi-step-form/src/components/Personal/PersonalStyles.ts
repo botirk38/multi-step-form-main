@@ -28,7 +28,6 @@ export const PersonalInfoForm = styled(Form)`
   
     background-color: ${props => props.theme.colors.neutral.white};
     z-index:100;
-    max-width:24rem;
 
     @media (min-width:767px) {
         padding: 2rem;
