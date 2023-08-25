@@ -7,7 +7,7 @@ import { DesktopNavigation } from "../NavigationBtns/StepNavigation";
 
 
 
-const Summary: React.FC<ComponentNavigationProps> = ({handleNext, handleBack, currentStep, maxStep , goToStep}) => {
+const Summary: React.FC<ComponentNavigationProps> = ({handleNext, handleBack, currentStep, maxStep , goToStep, setShowThankYou}) => {
     const formData = useFormState();
    
 
@@ -30,6 +30,8 @@ const Summary: React.FC<ComponentNavigationProps> = ({handleNext, handleBack, cu
         }
         return `$${totalPrice.toFixed(2)}`; 
     }
+
+
     
 
 
@@ -89,6 +91,7 @@ const Summary: React.FC<ComponentNavigationProps> = ({handleNext, handleBack, cu
                     handleNext={handleNext}
                     currentStep={currentStep}
                     maxStep={maxStep}
+                    setShowThankYou={setShowThankYou}
                 />
             </DesktopNavigation>
             <MobileStepNavigation>
@@ -96,7 +99,9 @@ const Summary: React.FC<ComponentNavigationProps> = ({handleNext, handleBack, cu
                     handleBack={handleBack}
                     handleNext={handleNext}
                     currentStep={currentStep}
-                    maxStep={4}
+                    maxStep={maxStep}
+                    setShowThankYou={setShowThankYou}
+                    
                 />
             </MobileStepNavigation>
 

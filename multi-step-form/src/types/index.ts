@@ -15,6 +15,8 @@ export type ComponentNavigationProps = {
     currentStep : number;
     maxStep : number;
     goToStep?: (step: number) => void;
+    setShowThankYou?: (showThankYou: boolean) => void;
+    handleBackFromThankYou?: () => void;
 }
 
 export type PersonalInfoInputs = {

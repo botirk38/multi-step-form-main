@@ -49,11 +49,14 @@ import PersonalInfo from './components/Personal/PersonalInfo.tsx';
 import SelectPlan from './components/SelectPlan/SelectPlan.tsx';
 import AddOns from './components/AddOns/AddOns.tsx';
 import Summary from './components/Summary/Summary.tsx';
+import ThankYou from './components/ThankYou/ThankYou.tsx';
 
 
 function App() {
 
   const [currentStep, setCurrentStep] = useState(1);
+  const [showThankYou, setShowThankYou] = useState(false);
+
 
     const handleNext = () => {
         if (currentStep < 4) { // Assuming you have 4 steps
@@ -71,6 +74,9 @@ function App() {
       setCurrentStep(step);
     }
 
+  
+  
+
     return (
       <FormProvider>
         <ThemeProvider theme={theme}>
@@ -82,7 +88,7 @@ function App() {
               handleBack={handleBack} 
               handleNext={handleNext} 
               currentStep={currentStep} 
-              maxStep={5}
+              maxStep={4}
             />
           }
             {currentStep === 2 && 
@@ -90,29 +96,36 @@ function App() {
             handleBack={handleBack} 
             handleNext={handleNext} 
             currentStep={currentStep} 
-            maxStep={5} 
+            maxStep={4} 
             />
             }
             {currentStep === 3 && <AddOns 
             handleBack={handleBack} 
             handleNext={handleNext} 
             currentStep={currentStep} 
-            maxStep={5} 
+            maxStep={4} 
             />}
-            {currentStep === 4 && <Summary 
-            handleBack={handleBack}
-            handleNext={handleNext}
-            goToStep={goToStep}
-            currentStep={currentStep}
-            maxStep={5}
-            />}
-
-            {currentStep === 5 && <ThankYou
-            handleBack={handleBack}
-            currentStep={currentStep}
-            
+            {currentStep === 4 && !showThankYou && 
+            <Summary 
+              handleBack={handleBack}
+              handleNext={handleNext}
+              goToStep={goToStep}
+              currentStep={currentStep}
+              maxStep={4}
+              setShowThankYou={setShowThankYou}
             />
             }
+
+            {currentStep === 4 && showThankYou && 
+            <ThankYou
+              handleBack={handleBack}
+              handleNext={handleNext}
+              currentStep={currentStep}
+              maxStep={4}
+              
+            />
+            }
+
       
 
           
