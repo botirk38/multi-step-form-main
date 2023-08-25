@@ -118,10 +118,7 @@ function App() {
 
             {currentStep === 4 && showThankYou && 
             <ThankYou
-              handleBack={handleBack}
-              handleNext={handleNext}
-              currentStep={currentStep}
-              maxStep={4}
+              
               
             />
             }

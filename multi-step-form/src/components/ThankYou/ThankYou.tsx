@@ -1,11 +1,9 @@
 import { ThankYouContainer, ThankYouForm, ThankYouTitle, ThankYouSubtitle, ThankYouImgContainer, ThankYouImg } from "./ThankYou";
 import thankYouImg from "../../assets/images/icon-thank-you.svg";
-import { DesktopNavigation } from "../NavigationBtns/StepNavigation";
-import { StepNavigation } from "../NavigationBtns/StepNavigation.tsx";
-import { MobileStepNavigation,  ComponentNavigationProps} from "../../types";
 
 
-const ThankYou: React.FC<ComponentNavigationProps> = () => {
+
+const ThankYou = () => {
    
 
 
