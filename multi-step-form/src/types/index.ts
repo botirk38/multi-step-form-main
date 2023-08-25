@@ -14,6 +14,7 @@ export type ComponentNavigationProps = {
     handleBack : () => void;
     currentStep : number;
     maxStep : number;
+    goToStep?: (step: number) => void;
 }
 
 export type PersonalInfoInputs = {
@@ -25,6 +26,8 @@ export type PersonalInfoInputs = {
 export type PlanBtnProps = {
     activeBtn ?: string | null;
   }
+
+
 
 export type SliderProps = {
   setBillingCycle: (billing: 'monthly' | 'yearly') => void;
@@ -40,6 +43,11 @@ export type AddOnsProps = {
   selectedAddOns: ('Online Service' | 'Larger Storage' | 'Customizable Profile')[];
   selectedAddOnsPrice: string | null;
   individualAddOnsPrice: {[key: string]: string};
+};
+
+export type SummaryProps = {
+  totalPrice?: string;
+  
 };
 
 

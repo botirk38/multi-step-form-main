@@ -19,14 +19,14 @@ type AddOn = {
 const ADD_ONS: AddOn[] = [
     {
         name: "Online Service",
-        monthlyPrice: "$5/mo",
-        yearlyPrice: "$50/yr",
+        monthlyPrice: "$1/mo",
+        yearlyPrice: "$10/yr",
         description: "Access to multiplayer games"
     },
     {
         name: "Larger Storage",
-        monthlyPrice: "$10/mo",
-        yearlyPrice: "$100/yr",
+        monthlyPrice: "$2/mo",
+        yearlyPrice: "$20/yr",
         description: "Extra 1TB of cloud save"
     },
     {

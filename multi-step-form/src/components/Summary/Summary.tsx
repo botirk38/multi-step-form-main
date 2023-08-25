@@ -1,11 +1,17 @@
 import React from "react";
-import { SummaryContainer, SummaryForm, CheckOutContainer } from "./Summary";
-import { Title, Subtitle, ItemContainer, ItemTitle, Btn } from "../../types";
-import { ComponentNavigationProps } from "../../types";
+import { SummaryContainer, SummaryForm, CheckOutContainer, SummaryTitle, SummaryItemContainer, SummarySubtitle, SummaryItemTitle, TotalPrice} from "./Summary";
+import {Subtitle, ItemContainer, MobileStepNavigation, ComponentNavigationProps} from "../../types";
 import { useFormState } from "../../hooks/formHooks.ts";
+import { StepNavigation } from "../NavigationBtns/StepNavigation.tsx";
+import { DesktopNavigation } from "../NavigationBtns/StepNavigation";
+
+
 
 const Summary: React.FC<ComponentNavigationProps> = ({handleNext, handleBack, currentStep, maxStep , goToStep}) => {
     const formData = useFormState();
+   
+
+
 
     const capitalizeFirstLetter = (string: string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -30,37 +36,70 @@ const Summary: React.FC<ComponentNavigationProps> = ({handleNext, handleBack, cu
     return (
         <SummaryContainer>
             <SummaryForm>
-                <Title>Finishing up</Title>
+                <SummaryTitle>Finishing up</SummaryTitle>
                 <Subtitle>Double-check everything looks OK before confirming.</Subtitle>
 
                 <CheckOutContainer>
-                    <ItemContainer>
-                        <ItemTitle>
-                            {formData.selectedPlan.selectedPlan ? capitalizeFirstLetter(formData.selectedPlan.selectedPlan) : ''}
-                            ({capitalizeFirstLetter(formData.selectedPlan.billingCycle)})
-                        </ItemTitle>
-                        <Subtitle>{formData.selectedPlan.billingCyclePrice}</Subtitle>
-                    </ItemContainer>
+                    <SummaryItemContainer>
 
-                    <ItemContainer onClick={() => goToStep(2)}>
-                        Change 
-                    </ItemContainer>
+                        <ItemContainer>
 
-                    <ItemContainer>
+                            <SummaryItemContainer>
+                                <SummarySubtitle style={{marginBottom:"0"}}>
+                                    {formData.selectedPlan.selectedPlan ? capitalizeFirstLetter(formData.selectedPlan.selectedPlan) : ''}
+                                </SummarySubtitle>
+                                <SummarySubtitle style={{marginBottom:"0"}}>
+                                    ({capitalizeFirstLetter(formData.selectedPlan.billingCycle)})
+                                </SummarySubtitle>
+                            
+                            </SummaryItemContainer>
+                            
+
+                            <Subtitle onClick={() => goToStep && goToStep(2)} style={{textDecoration:"underline", marginTop:"0"}}>
+                                Change 
+                            </Subtitle>
+                            
+                        </ItemContainer>
+
+                        <SummarySubtitle>{formData.selectedPlan.billingCyclePrice}</SummarySubtitle>
+                        
+                    </SummaryItemContainer>
+
+                   
+
+                    <ItemContainer style={{borderTop: `1px solid gray`}}>
                         {formData.AddOns.selectedAddOns.length > 0 ? formData.AddOns.selectedAddOns.map((addOn: string) => (
-                            <ItemContainer key={addOn}>
-                                <ItemTitle>{addOn}</ItemTitle>
-                                <Subtitle>{formData.AddOns.individualAddOnsPrice[addOn]}</Subtitle>
-                            </ItemContainer>
+                            <SummaryItemContainer key={addOn}>
+                                <SummaryItemTitle>{addOn}</SummaryItemTitle>
+                                <SummarySubtitle style={{fontWeight: "normal"}}>{formData.AddOns.individualAddOnsPrice[addOn]}</SummarySubtitle>
+                            </SummaryItemContainer>
                         )) : 'No Add-Ons'}
                     </ItemContainer>
                 </CheckOutContainer>
 
-                <ItemContainer>
+                <SummaryItemContainer style={{width:"100%"}}>
                     <Subtitle>{formData.selectedPlan.billingCycle === "monthly" ? "Total (per month)": "Total (per year)"}</Subtitle>
-                    <ItemTitle>{calculateTotalPrice()}</ItemTitle>
-                </ItemContainer>
+                    <TotalPrice>{calculateTotalPrice()}</TotalPrice>
+                </SummaryItemContainer>
             </SummaryForm>
+
+            <DesktopNavigation>
+                <StepNavigation
+                    handleBack={handleBack}
+                    handleNext={handleNext}
+                    currentStep={currentStep}
+                    maxStep={maxStep}
+                />
+            </DesktopNavigation>
+            <MobileStepNavigation>
+                <StepNavigation
+                    handleBack={handleBack}
+                    handleNext={handleNext}
+                    currentStep={currentStep}
+                    maxStep={4}
+                />
+            </MobileStepNavigation>
+
         </SummaryContainer>
     )
 }

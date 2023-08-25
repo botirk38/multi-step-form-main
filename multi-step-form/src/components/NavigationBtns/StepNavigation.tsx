@@ -20,13 +20,13 @@ export const StepNavigation: React.FC<Props> = ({ handleNext, handleBack, curren
         Go Back
       </NavigationBtnBack>
     }
-    { currentStep < maxStep && 
+    { currentStep < maxStep && currentStep < 4 &&
       <NavigationBtns type="submit" onClick={handleNext}>
         Next Step
       </NavigationBtns>
     }
 
-    { currentStep === maxStep &&
+    { currentStep === 4 &&
       <NavigationBtns type="submit" onClick={handleNext}>
         Confirm
       </NavigationBtns>

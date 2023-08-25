@@ -45,7 +45,7 @@ export const AddOnsBtnContainer = styled(BtnContainer)`
 export const AddOnsBtn = styled(Btn)`
     flex-direction:row;
     gap: 1.5rem;
-    justify-content:start;
+    justify-content:space-between;
     align-items:start;
     text-align:start;
     padding:1rem;
@@ -74,7 +74,7 @@ export const AddOnsBtnItemContainer = styled(ItemContainer)`
 
 export const AddOnsSubtitle = styled.h3`
     font-size: ${props => props.theme.typography.body.fontSize};
-    color: ${props => props.theme.colors.primary.marineBlue};
+    color: ${props => props.theme.colors.primary.purplishBlue};
     margin:0;
 
     @media (min-width:767px) {

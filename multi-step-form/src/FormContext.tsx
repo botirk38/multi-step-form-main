@@ -27,7 +27,8 @@ const defaultSelectPlan: PlanInputProps = {
 
 const defaultAddOns: AddOnsProps = {
   selectedAddOns: [],
-  selectedAddOnsPrice: null
+  selectedAddOnsPrice: null,
+  individualAddOnsPrice: {}
 };
 
     
