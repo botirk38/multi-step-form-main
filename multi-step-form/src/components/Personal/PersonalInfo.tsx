@@ -88,7 +88,7 @@ const PersonalInfo: React.FC<ComponentNavigationProps> = ({
                 type="tel"
                 id="phone"
                 placeholder="e.g. +1 234 567 890"
-                {...register("phoneNumber", { required: true, maxLength: 11
+                {...register("phoneNumber", { required: true, maxLength: 14
             })}
             />
             
