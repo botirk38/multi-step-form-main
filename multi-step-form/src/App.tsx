@@ -106,6 +106,13 @@ function App() {
             currentStep={currentStep}
             maxStep={5}
             />}
+
+            {currentStep === 5 && <ThankYou
+            handleBack={handleBack}
+            currentStep={currentStep}
+            
+            />
+            }
       
 
           
