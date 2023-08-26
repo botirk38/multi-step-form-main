@@ -163,7 +163,7 @@ export const Form = styled.form`
         width:auto;
         margin-left:5rem;
     
-        margin-bottom:12rem;
+        margin-bottom:9rem;
         max-width:28rem;
 
        
