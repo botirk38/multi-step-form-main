@@ -14,7 +14,6 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 
 ## Overview
@@ -35,14 +34,31 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+#### Personal Info Step
+![Personal Info Step](./multi-step-form/public/screenshots/personal-info.png)
+
+#### Select Plan Step
+
+![Select Plan Step](./multi-step-form/public/screenshots/plan.png)
+
+#### Add-ons Step
+
+![Add-ons Step](./multi-step-form/public/screenshots/addons.png)
+
+#### Checkout Step
+
+![Checkout Step](./multi-step-form/public/screenshots/checkout.png)
+
+#### Thank You Step
+
+![Thank You Step](./multi-step-form/public/screenshots/thankYou.png)
 
 
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github Repo](https://github.com/botirk38/multi-step-form-main)
+- Live Site URL: [Live Site](https://multi-step-form-botir.netlify.app/)
 
 ## My process
 
@@ -54,58 +70,77 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
+- [Typescript](https://www.typescriptlang.org/) - For type checking
 - [Styled Components](https://styled-components.com/) - For styles
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I learned how to type check data passed when the form is submitted, so we can avoid errors and bugs down the line, especially in an application where data is passed around a lot.
 
-To see how you can add code snippets, see below:
+```tsx
+const onSubmitForm: SubmitHandler<AddOnsProps> = (data) => {
+        isSubmittingRef.current = true;
+        const selectedAddOns = data.selectedAddOns || [];
+        const individualPrices = calculateIndividualPrices(selectedAddOns, formData.selectedPlan.billingCycle);
 
-```html
-<h1>Some HTML code I'm proud of</h1>
+        setFormData(prevState => ({
+            ...prevState,
+            AddOns: {
+                selectedAddOns: selectedAddOns,
+                selectedAddOnsPrice: calculateTotalPrice(selectedAddOns, formData.selectedPlan.billingCycle),
+                individualAddOnsPrice: individualPrices
+            }
+        }));
+    };
+
 ```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+
+I also learned how to use the Context API to create a global state for the form data, so that we can access it from any component without having to pass it down as props. This is especially useful when we have a lot of nested components.
+
+```tsx
+
+export const FormContext = createContext<{
+  formData: FormData;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+}>({
+  formData: {
+    personalInfo: defaultPersonalInfo,
+    selectedPlan: defaultSelectPlan,
+    AddOns: defaultAddOns,
+  
+  },
+  setFormData: () => {},
+});
+
+export const FormProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
+  const [formData, setFormData] = useState<FormData>({
+    personalInfo: defaultPersonalInfo,
+    selectedPlan: defaultSelectPlan,
+    AddOns: defaultAddOns,
+  });
+
+  return (
+      <FormContext.Provider value={{ formData, setFormData }}>
+          {children || null}
+      </FormContext.Provider>
+  );
+};
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+- Connect the form to a backend so that the data can be saved to a database
+- Add a progress bar to show the user how far along they are in the form
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
 
-### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Botir Khaltaev](https://portfolio-app-botir.netlify.app/)
+- Frontend Mentor - [@botirk38](https://www.frontendmentor.io/profile/botirk38)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
