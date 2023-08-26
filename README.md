@@ -51,7 +51,7 @@ Users should be able to:
 
 #### Thank You Step
 
-![Thank You Step](./multi-step-form/public/screenshots/thankYou.png)
+![Thank You Step](./multi-step-form/public/screenshots/ThankYou.png)
 
 
 
