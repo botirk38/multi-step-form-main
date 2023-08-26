@@ -11,9 +11,8 @@ export const ThankYouForm = styled(Form)`
     justify-content:center;
     align-items:center;
     margin:0;
-    min-height:100%;
-    max-width:80%;
     text-align:center;
+    top:30%;
 
 `;
 
